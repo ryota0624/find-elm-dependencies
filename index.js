@@ -81,7 +81,7 @@ function getElmPackageSourceDirectories(baseDir, currentDir) {
   var elmPackagePath = path.join(currentDir, 'elm.json');
   if (fs.existsSync(elmPackagePath)) {
     var sourceDirectories = getSourceDirectories(elmPackagePath);
-    if (_.includes(sourceDirectories, baseDir)) {
+    if (_.some(sourceDirectories, function (sourceDirectory) { return baseDir.includes(sourceDirectory)})) {
       return sourceDirectories;
     }
   }
